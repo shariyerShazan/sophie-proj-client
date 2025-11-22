@@ -14,6 +14,7 @@ interface StepTwoProps {
     expireDate: string
     cvc: string
     paymentMethod: string
+    validity: string
   }
   onChange: (data: any) => void
   onBack: () => void
@@ -36,24 +37,35 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
       <div className="">
 
       {/* Payment Summary */}
-      <h3 className="text-sm font-semibold pb-4 border-b-gray-700 border-b">Payment Summary:</h3>
+      <h3 className="text-sm lg:text-base font-semibold pb-4 border-b-gray-700 border-b">Payment Summary:</h3>
       <div className=" mt-4 mb-4 space-y-2 pb-4 border-b-gray-700 border-b">
         
 
         <div className="bg-[#2b2b2b] p-4 rounded-xl">
             <div className="flex justify-between items-center pb-4 ">
-          <p className="text-sm">Membership Fees:</p>
-          <p className="text-sm text-white">300 NIS</p>
+          <p className="text-sm lg:text-base">Membership Fees:</p>
+          <p className="text-sm lg:text-base text-white">300 NIS</p>
         </div>
 
         <div className="flex justify-between items-center ">
-          <p className="text-sm">Validity:</p>
-          <p className="text-sm text-white">For 1 year</p>
+          <p className="text-sm lg:text-base">Validity:</p>
+           <div>
+            <select
+      value={data.validity}              // bind the selected value
+      onChange={(e) => handleChange("validity", e.target.value)}  // update validity
+      className="bg-[#2B2B2B] border border-transparent rounded-lg px-3 py-2
+                 text-white text-sm focus:ring-1 focus:ring-[#F80B58] focus:outline-none"
+    >
+      <option className="text-black text-sm" value="1 year">For 1 year</option>
+      <option className="text-black text-sm" value="2 years">For 2 years</option>
+      <option className="text-black text-sm" value="3 years">For 3 years</option>
+    </select>
+           </div>
         </div>
         </div>
          <div className="bg-[#2b2b2b] p-4 rounded-xl">
              <div className="flex justify-between items-center ">
-                <p className="text-sm font-semibold">Total Payable</p>
+                <p className="text-sm lg:text-base font-semibold">Total Payable</p>
                 <p className="text-xl font-bold text-orange-400">₪ 300</p>
               </div>
          </div>
@@ -61,7 +73,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
 
       {/* Payment Method */}
       <div className="mb-8">
-        <h3 className="text-sm font-semibold mb-4">Payment Method</h3>
+        <h3 className="text-sm lg:text-base font-semibold mb-4">Payment Method</h3>
         <div className="flex gap-6 items-center">
           {[
             { id: "stripe", label: "stripe", icon: stripeImg },
@@ -99,7 +111,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
       {/* Card Details */}
       <div className="space-y-6 mb-8">
         <div>
-          <label className="block text-sm font-semibold mb-2">Cardholder Name:</label>
+          <label className="block text-sm lg:text-base font-semibold mb-2">Cardholder Name:</label>
           <Input
             type="text"
             placeholder="Enter name on card"
@@ -111,7 +123,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
 
        {/* Card Number */}
 <div>
-  <label className="block text-sm font-semibold mb-2">Card Number:</label>
+  <label className="block text-sm lg:text-base font-semibold mb-2">Card Number:</label>
   <div className="flex gap-2">
     {Array.from({ length: 4 }).map((_, idx) => {
       const segment = data.cardNumber.split(" ")[idx] || "";
@@ -139,9 +151,9 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold mb-2">Expire Date:</label>
+            <label className="block text-sm lg:text-base font-semibold mb-2">Expire Date:</label>
             <Input
-              type="text"
+              type="date"
               placeholder="Enter Date"
               value={data.expireDate}
               onChange={(e) => handleChange("expireDate", e.target.value)}
@@ -149,9 +161,9 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold mb-2">CVC:</label>
+            <label className="block text-sm lg:text-base font-semibold mb-2">CVC:</label>
             <Input
-              type="text"
+              type="number"
               placeholder="-  -  -"
               maxLength={3}
               value={data.cvc}
@@ -170,7 +182,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
 />
 
 
-        <span className="text-xs text-gray-400">I agree to the privacy policy & terms of service.</span>
+        <span className="text-sm text-[#2b2b2b]">I agree to the privacy policy & terms of service.</span>
       </div>
 
       {/* Buttons */}
