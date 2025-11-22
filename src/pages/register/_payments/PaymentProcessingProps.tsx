@@ -28,7 +28,7 @@ const PaymentProcessing: React.FC<PaymentProcessingProps> = ({ open , onClose })
   return (
   <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
 
-      <DialogContent className="border-0 bg-white rounded-2xl shadow-2xl max-w-md">
+      <DialogContent className="border-0 bg-white rounded-2xl shadow-2xl max-w-md italic">
         <div className="space-y-3 p-6 text-center">
           <p className="text-xs text-gray-500 font-semibold uppercase tracking-widest">Processing</p>
 

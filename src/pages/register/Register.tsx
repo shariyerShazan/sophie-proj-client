@@ -16,8 +16,9 @@ interface FormData {
   cardholderName: string
   cardNumber: string
   expireDate: string
-  cvc: string
+  cvc: number
   paymentMethod: string
+  validity: string
 }
 
 const Register: React.FC = () => {
@@ -39,6 +40,7 @@ const Register: React.FC = () => {
     expireDate: "",
     cvc: "",
     paymentMethod: "stripe",
+    validity: "",
   })
 
   const handleStepOneChange = (data: Partial<FormData>) => {
@@ -58,7 +60,7 @@ const Register: React.FC = () => {
   }
   const handleSubmit = () => {
     setShowProcessing(true)
-
+console.log(formData)
     // Simulate payment processing
     setTimeout(() => {
       setShowProcessing(false)
@@ -83,6 +85,7 @@ const Register: React.FC = () => {
       expireDate: "",
       cvc: "",
       paymentMethod: "stripe",
+      validity: ""
     })
   }
 

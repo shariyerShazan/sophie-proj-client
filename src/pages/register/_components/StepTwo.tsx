@@ -14,6 +14,7 @@ interface StepTwoProps {
     expireDate: string
     cvc: string
     paymentMethod: string
+    validity: string
   }
   onChange: (data: any) => void
   onBack: () => void
@@ -48,7 +49,18 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
 
         <div className="flex justify-between items-center ">
           <p className="text-sm lg:text-base">Validity:</p>
-          <p className="text-sm lg:text-base text-white">For 1 year</p>
+           <div>
+            <select
+      value={data.validity}              // bind the selected value
+      onChange={(e) => handleChange("validity", e.target.value)}  // update validity
+      className="bg-[#2B2B2B] border border-transparent rounded-lg px-3 py-2
+                 text-white text-sm focus:ring-1 focus:ring-[#F80B58] focus:outline-none"
+    >
+      <option className="text-black text-sm" value="1 year">For 1 year</option>
+      <option className="text-black text-sm" value="2 years">For 2 years</option>
+      <option className="text-black text-sm" value="3 years">For 3 years</option>
+    </select>
+           </div>
         </div>
         </div>
          <div className="bg-[#2b2b2b] p-4 rounded-xl">
@@ -141,7 +153,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
           <div>
             <label className="block text-sm lg:text-base font-semibold mb-2">Expire Date:</label>
             <Input
-              type="text"
+              type="date"
               placeholder="Enter Date"
               value={data.expireDate}
               onChange={(e) => handleChange("expireDate", e.target.value)}
@@ -151,7 +163,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ data, onChange, onBack, onSubmit }) =
           <div>
             <label className="block text-sm lg:text-base font-semibold mb-2">CVC:</label>
             <Input
-              type="text"
+              type="number"
               placeholder="-  -  -"
               maxLength={3}
               value={data.cvc}

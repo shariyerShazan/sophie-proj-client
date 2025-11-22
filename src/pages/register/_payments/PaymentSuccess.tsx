@@ -14,7 +14,7 @@ interface PaymentSuccessProps {
 const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ open, onClose, membershipId }) => {
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="border-0 bg-white rounded-2xl shadow-2xl max-w-md">
+      <DialogContent className="border-0 bg-white rounded-2xl shadow-2xl max-w-md italic">
 
         <div className="space-y-2  px-6 text-center">
               <p className="text-xs text-gray-500 font-semibold uppercase tracking-widest">Confirmation</p>
